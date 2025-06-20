@@ -13,6 +13,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.learnjcnavigationapp.api.TweetsyAPI
+import com.example.learnjcnavigationapp.screens.CategoryScreen
+import com.example.learnjcnavigationapp.screens.TweetDetailsScreen
 import com.example.learnjcnavigationapp.ui.theme.LearnJCNavigationAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
@@ -29,37 +31,11 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        GlobalScope.launch(Dispatchers.IO) {
-            var response = tweetsyAPI.getCategories()
-            Log.d("LAXMIKANT", response.body().toString())
-        }
+//        enableEdgeToEdge()
         setContent {
             LearnJCNavigationAppTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                TweetDetailsScreen()
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    LearnJCNavigationAppTheme {
-        Greeting("Android")
     }
 }
